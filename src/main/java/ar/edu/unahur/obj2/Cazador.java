@@ -4,4 +4,7 @@ public class Cazador {
     public Boolean cazar() {
         return Boolean.TRUE;
     }
+    public Integer poderDeCaza() {
+        return 20;
+    }
 }
