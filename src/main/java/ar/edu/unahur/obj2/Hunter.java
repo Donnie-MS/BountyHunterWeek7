@@ -20,19 +20,30 @@ public abstract class Hunter {
         );
     }
     
+    protected Boolean generalCondition(Fugitive aFugitive) {
+        return this.experience < aFugitive.getInnocence();
+    }
+
+    protected abstract Boolean specificCondition(Fugitive aFugitive); 
+
+    protected abstract void specificIntimidation(Fugitive aFugitive); 
+
     public void capture(Zone aZone, Fugitive aFugitive) {
-        if (this.experience < aFugitive.getInnocence()) {
+        if (this.generalCondition(aFugitive) && this.specificCondition(aFugitive)) {
             this.intimidate(aFugitive);
         }
         else {
             aZone.removeFugitive(aFugitive);
+            this.captured.add(aFugitive);
 
             this.experience += aZone.getMinimumSkillOfIntimidated() + 2 * this.captured.size();
         }
     }
     private void intimidate(Fugitive aFugitive) {
         aFugitive.setInnocence(Math.max(0, aFugitive.getInnocence() - 2));
-        aFugitive.isIntimidated();
+        aFugitive.isIntimidated(true);
+        this.specificIntimidation(aFugitive);
+
     }
 
 }
