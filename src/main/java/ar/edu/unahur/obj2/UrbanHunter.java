@@ -3,17 +3,17 @@ package ar.edu.unahur.obj2;
 import java.util.List;
 
 public class UrbanHunter extends Hunter{
-    public UrbanHunter (Integer experience, List<Fugitive> captured) {
+    public UrbanHunter (Integer experience, List<CommonFugitive> captured) {
         super(experience, captured);
     }
 
     @Override
-    protected Boolean specificCondition(Fugitive aFugitive) {
+    protected Boolean specificCondition(CommonFugitive aFugitive) {
         return !aFugitive.isNervous();
     }
 
     @Override
-    protected void specificIntimidation(Fugitive aFugitive) {
+    protected void specificIntimidation(CommonFugitive aFugitive) {
         aFugitive.isNervous(false);
     }
 }

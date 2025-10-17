@@ -4,9 +4,9 @@ import java.util.List;
 
 public abstract class Hunter {
     private Integer experience;
-    private final List<Fugitive> captured;
+    private final List<CommonFugitive> captured;
 
-    public Hunter(Integer experience, List<Fugitive> captured) {
+    public Hunter(Integer experience, List<CommonFugitive> captured) {
         this.experience = experience;
         this.captured = captured;
     }
@@ -20,15 +20,15 @@ public abstract class Hunter {
         );
     }
     
-    protected Boolean generalCondition(Fugitive aFugitive) {
+    protected Boolean generalCondition(CommonFugitive aFugitive) {
         return this.experience < aFugitive.getInnocence();
     }
 
-    protected abstract Boolean specificCondition(Fugitive aFugitive); 
+    protected abstract Boolean specificCondition(CommonFugitive aFugitive); 
 
-    protected abstract void specificIntimidation(Fugitive aFugitive); 
+    protected abstract void specificIntimidation(CommonFugitive aFugitive); 
 
-    public void capture(Zone aZone, Fugitive aFugitive) {
+    public void capture(Zone aZone, CommonFugitive aFugitive) {
         if (this.generalCondition(aFugitive) && this.specificCondition(aFugitive)) {
             this.intimidate(aFugitive);
         }
@@ -39,7 +39,7 @@ public abstract class Hunter {
             this.experience += aZone.getMinimumSkillOfIntimidated() + 2 * this.captured.size();
         }
     }
-    private void intimidate(Fugitive aFugitive) {
+    private void intimidate(CommonFugitive aFugitive) {
         aFugitive.setInnocence(Math.max(0, aFugitive.getInnocence() - 2));
         aFugitive.isIntimidated(true);
         this.specificIntimidation(aFugitive);

@@ -1,12 +1,12 @@
 package ar.edu.unahur.obj2;
 
-public class Fugitive {
+public class CommonFugitive implements IFugitive{
     private Integer innocenceLevel;
     private Integer skillLevel;
     private Boolean isNervous;
     private Boolean isIntimidated;
 
-    public Fugitive(Integer innocenceLevel, Integer skillLevel, Boolean isNervous, Boolean isIntimidated) {
+    public CommonFugitive(Integer innocenceLevel, Integer skillLevel, Boolean isNervous, Boolean isIntimidated) {
         this.innocenceLevel = innocenceLevel;
         this.skillLevel = skillLevel;
         this.isNervous = isNervous;
